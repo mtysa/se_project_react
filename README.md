@@ -1,4 +1,6 @@
-# WTWR (What to Wear?)
+# Project 10: WTWR (What to Wear?)
+
+## By Mustafa Ysa
 
 ## About the project
 
@@ -7,3 +9,5 @@ The idea of the application is pretty simple - we make a call to an API, which t
 ## Links
 
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
+
+- [Project Screenshot](./src/assets/wtwr-page.PNG)
