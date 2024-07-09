@@ -17,27 +17,27 @@ function getItems() {
     });
 }
 
-// function addItems({ name, imageUrl, weather }) {
-//   return fetch(`${baseUrl}/items`, {
-//     method: "POST",
-//     headers: headers,
-//     body: JSON.stringify({ name, imageUrl, weather }),
-//   })
-//     .then(checkRes)
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
+function addItem({ name, imageUrl, weather }) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ name, imageUrl, weather }),
+  })
+    .then(checkRes)
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
-// function deleteItem(id) {
-//   return fetch(`${baseUrl}/items/${id}`, {
-//     method: "DELETE",
-//     headers: headers,
-//   })
-//     .then(checkRes)
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
+function deleteItem(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: headers,
+  })
+    .then(checkRes)
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
-export { getItems };
+export { getItems, addItem, deleteItem };

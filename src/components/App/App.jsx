@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -33,14 +33,31 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const closeActiveModal = () => {
-    setActiveModal("");
+  const handleAddItem = (values) => {
+    return addItem(values)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
-  const onAddItem = (e, values) => {
-    e.preventDefault();
-    console.log(e);
-    console.log(values);
+  const handleDeleteItem = (id) => {
+    return deleteItem(id)
+      .then(() => {
+        const updatedClothingItems = clothingItems.filter(
+          (item) => item._id !== id
+        );
+        setClothingItems(updatedClothingItems);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const closeActiveModal = () => {
+    setActiveModal("");
   };
 
   const handleToggleSwitchChange = () => {
@@ -60,7 +77,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -101,12 +117,13 @@ function App() {
         <AddItemModal
           activeModal={activeModal}
           closeActiveModal={closeActiveModal}
-          onAddItem={onAddItem}
+          onAddItem={handleAddItem}
         />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
@@ -114,3 +131,5 @@ function App() {
 }
 
 export default App;
+
+// to do later: validate form, confirmation modal

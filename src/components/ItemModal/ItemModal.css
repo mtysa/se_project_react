@@ -8,9 +8,15 @@
   height: 100%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  padding: 0;
+}
+
+.modal__container {
 }
 
 .modal__footer {
+  display: flex;
+  justify-content: space-between;
   margin-left: 32px;
   margin-bottom: 32px;
 }
@@ -23,4 +29,14 @@
 .modal__weather {
   margin: 0;
   padding-top: 12px;
+}
+
+.modal__delete-btn {
+  margin: 20px 32px auto;
+  padding: 0;
+  font-weight: 700;
+  color: #ff4d00;
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
 }
