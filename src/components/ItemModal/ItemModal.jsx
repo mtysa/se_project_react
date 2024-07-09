@@ -3,7 +3,6 @@ import "./ItemModal.css";
 function ItemModal({ activeModal, onClose, card, handleDeleteItem }) {
   const handleDeleteClick = () => {
     handleDeleteItem(card._id);
-    onClose();
   };
 
   return (

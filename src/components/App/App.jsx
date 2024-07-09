@@ -51,6 +51,7 @@ function App() {
           (item) => item._id !== id
         );
         setClothingItems(updatedClothingItems);
+        closeActiveModal();
       })
       .catch((error) => {
         console.error(error);

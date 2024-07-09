@@ -10,11 +10,7 @@ function checkRes(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`, { headers: headers })
-    .then(checkRes)
-    .catch((error) => {
-      console.error(error);
-    });
+  return fetch(`${baseUrl}/items`, { headers: headers }).then(checkRes);
 }
 
 function addItem({ name, imageUrl, weather }) {
@@ -22,22 +18,14 @@ function addItem({ name, imageUrl, weather }) {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ name, imageUrl, weather }),
-  })
-    .then(checkRes)
-    .catch((error) => {
-      console.error(error);
-    });
+  }).then(checkRes);
 }
 
 function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: headers,
-  })
-    .then(checkRes)
-    .catch((error) => {
-      console.error(error);
-    });
+  }).then(checkRes);
 }
 
-export { getItems, addItem, deleteItem };
+export { checkRes, getItems, addItem, deleteItem };
