@@ -113,3 +113,18 @@
   opacity: 30%;
   cursor: default;
 }
+
+.modal__orLogin_btn {
+  border-style: none;
+  background-color: transparent;
+  display: flex;
+  padding: 0;
+  width: fit-content;
+
+ 
+}
+
+.modal__orLogin_btn:hover {
+  cursor: pointer;
+  
+}

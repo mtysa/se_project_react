@@ -3,12 +3,17 @@ import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, isLoggedIn, handleRegisterClick, handleLoginClick }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <div className="header__logo-container">
@@ -22,7 +27,9 @@ function Header({ handleAddClick, weatherData }) {
       </div>
       <div className="header__temp-container">
         <ToggleSwitch />
-        <button
+        {isLoggedIn ? (
+          <>
+          <button
           onClick={handleAddClick}
           type="button"
           className="header__add-clothes-btn"
@@ -39,6 +46,19 @@ function Header({ handleAddClick, weatherData }) {
             />
           </div>
         </Link>
+        </>
+        )
+      : (
+        <div className="header__auth">
+          <button className="header__register"
+          onClick={handleRegisterClick}>Sign Up</button>
+          <button className="header__login"
+          onClick={handleLoginClick}>Login</button>
+        </div>
+
+      )}
+        
+     
       </div>
     </header>
   );

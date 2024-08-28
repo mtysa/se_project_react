@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ closeActiveModal, onAddItem, activeModal }) => {
-  const [name, setName] = useState("");
-  const handleNameChange = (e) => {
+  const [itemName, setItemName] = useState("");
+  const handleItemNameChange = (e) => {
     console.log(e.target.value);
-    setName(e.target.value);
+    setItemName(e.target.value);
   };
 
   const [imageUrl, setUrl] = useState("");
@@ -22,7 +22,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, activeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    onAddItem({ itemName, imageUrl, weather });
   };
 
   return (
@@ -33,18 +33,18 @@ const AddItemModal = ({ closeActiveModal, onAddItem, activeModal }) => {
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="itemName" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="item-name"
           placeholder="Name"
           minLength="1"
           maxLength="30"
           required
-          value={name}
-          onChange={handleNameChange}
+          value={itemName}
+          onChange={handleItemNameChange}
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
