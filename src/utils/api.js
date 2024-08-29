@@ -9,6 +9,17 @@ function checkRes(res) {
   }
 }
 
+const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+};
+
 function getItems() {
   return fetch(`${baseUrl}/items`, { headers: headers }).then(checkRes);
 }
@@ -28,4 +39,4 @@ function deleteItem(id) {
   }).then(checkRes);
 }
 
-export { checkRes, getItems, addItem, deleteItem };
+export { checkRes, getUserInfo, getItems, addItem, deleteItem };

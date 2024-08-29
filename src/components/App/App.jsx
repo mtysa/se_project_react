@@ -15,7 +15,7 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
-import { getToken } from "../../utils/token";
+import { setToken, getToken } from "../../utils/token";
 // Modals
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -56,7 +56,7 @@ function App() {
   const handleRegistration = ({ email, password, name, avatar }) => {
     auth
       .register(email, password, name, avatar)
-      .then(() => auth.signin(email, password, name, avatar))
+      .then(() => auth.authorize(email, password, name, avatar))
       .then((data) => {
         setIsLoggedIn(true);
         setCurrentUser(data.user);
