@@ -69,3 +69,8 @@
   cursor: pointer;
   padding: 0;
 }
+
+.header__avatar {
+  width: 56px;
+  height: 56px;
+}

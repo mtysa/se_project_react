@@ -16,7 +16,8 @@ const LoginModal = ({ closeActiveModal, activeModal, handleLogin }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin({ email, password });
+    handleLogin(email, password);
+    console.log("log in clicked");
   };
 
   return (
