@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditPofileModal = ({
@@ -26,13 +25,6 @@ const EditPofileModal = ({
     console.log("Changes saved.");
   };
 
-  // const currentUser = useContext(CurrentUserContext);
-  // useEffect(() => {
-  //   if (activeModal === "edit-profile") {
-  //     currentUser.name = setName;
-  //     currentUser.avatar = setAvatar;
-  //   }
-  // });
   return (
     <ModalWithForm
       title="Change profile data"
@@ -60,7 +52,7 @@ const EditPofileModal = ({
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="edit-avatar"
           placeholder="Avatar URL"
           required
           value={avatar}
@@ -72,6 +64,3 @@ const EditPofileModal = ({
 };
 
 export default EditPofileModal;
-
-// make submit functioning for edit profile. complete handleEditProfile in App.jsx
-// having issues with api authorizing change. maybe find answer within login auth.

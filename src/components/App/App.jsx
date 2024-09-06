@@ -105,7 +105,7 @@ function App() {
       return;
     }
     api
-      .updateUserInfo(jwt, name, avatar)
+      .updateUserInfo(name, avatar, jwt)
       .then((res) => {
         setCurrentUser(res.data);
         closeActiveModal();
@@ -116,8 +116,9 @@ function App() {
   };
 
   //                                  Clothing Items
-  const handleAddItem = (values) => {
-    return addItem(values)
+  const handleAddItem = (name, imageUrl, weather) => {
+    const jwt = getToken();
+    return addItem(name, imageUrl, weather, jwt)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeActiveModal();
@@ -128,7 +129,8 @@ function App() {
   };
 
   const handleDeleteItem = (id) => {
-    return deleteItem(id)
+    const jwt = getToken();
+    return deleteItem(id, jwt)
       .then(() => {
         const updatedClothingItems = clothingItems.filter(
           (item) => item._id !== id
@@ -147,6 +149,7 @@ function App() {
     getItems()
       .then(({ data }) => {
         setClothingItems(data);
+        console.log(data);
       })
       .catch(console.error);
   }, []);
@@ -215,7 +218,7 @@ function App() {
           <AddItemModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            onAddItem={handleAddItem}
+            handleAddItem={handleAddItem}
           />
           <ItemModal
             activeModal={activeModal}
@@ -247,5 +250,6 @@ function App() {
 export default App;
 
 // to do later: validate form, confirmation modal
-// to do: add Item function properly (err: authorization is required)
-// edit profile change function
+// to do: render item after add.. it'll only show after refresh.
+// like and unlike
+// close modal with esc and click outside modal

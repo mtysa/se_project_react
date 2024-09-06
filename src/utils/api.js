@@ -32,22 +32,37 @@ const updateUserInfo = (name, avatar, token) => {
   }).then(checkRes);
 };
 
-function getItems() {
-  return fetch(`${baseUrl}/items`, { headers: headers }).then(checkRes);
+function getItems(token) {
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
 }
 
-function addItem({ name, imageUrl, weather }) {
+function addItem(name, imageUrl, weather, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkRes);
 }
 
-function deleteItem(id) {
+function deleteItem(id, token) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(checkRes);
 }
 
