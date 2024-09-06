@@ -1,24 +1,38 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import avatar from "../../assets/avatar.png";
 import "./SideBar.css";
+import { removeToken } from "../../utils/token";
 
-function SideBar() {
+function SideBar({ handleEditClick, setIsLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const navigate = useNavigate();
+
+  function logOut() {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
+  }
   return (
     <div className="sideBar">
-      <img
-        className="sideBar__avatar"
-        src={currentUser?.avatar}
-        alt={currentUser?.name}
-      />
-      <p className="sideBar__username">{currentUser.name}</p>
+      <div className="sideBar__info">
+        <img
+          className="sideBar__avatar"
+          src={currentUser?.avatar}
+          alt={currentUser?.name}
+        />
+        <p className="sideBar__username">{currentUser.name}</p>
+      </div>
+      <button className="sideBar__edit" onClick={handleEditClick}>
+        Change profile data
+      </button>
+      <button onClick={logOut} className="sideBar__logout">
+        Log out
+      </button>
     </div>
   );
 }
 
 export default SideBar;
 
-//get name to reflect currentuser
-// update avi later instead of hardcode
+// edit profile function.. link to server.. reference aroundtheus proj

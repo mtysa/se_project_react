@@ -78,6 +78,7 @@ const RegisterModal = ({
           placeholder="Name"
           minLength="2"
           maxLength="30"
+          required
           value={name}
           onChange={handleNameChange}
         />
@@ -89,6 +90,7 @@ const RegisterModal = ({
           className="modal__input"
           id="avatar"
           placeholder="Avatar URL"
+          required
           value={avatar}
           onChange={handleAvatarChange}
         />

@@ -6,12 +6,16 @@ function Profile({
   handleCardClick,
   handleAddClick,
   clothingItems,
-  currentUser,
+  handleEditClick,
+  setIsLoggedIn,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar
+          handleEditClick={handleEditClick}
+          setIsLoggedIn={setIsLoggedIn}
+        />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

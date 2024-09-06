@@ -20,6 +20,18 @@ const getUserInfo = (token) => {
   }).then(checkRes);
 };
 
+const updateUserInfo = (name, avatar, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkRes);
+};
+
 function getItems() {
   return fetch(`${baseUrl}/items`, { headers: headers }).then(checkRes);
 }
@@ -39,4 +51,4 @@ function deleteItem(id) {
   }).then(checkRes);
 }
 
-export { checkRes, getUserInfo, getItems, addItem, deleteItem };
+export { checkRes, getUserInfo, updateUserInfo, getItems, addItem, deleteItem };

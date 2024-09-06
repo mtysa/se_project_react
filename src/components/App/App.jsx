@@ -22,6 +22,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditPofileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -53,6 +54,9 @@ function App() {
   };
   const handleLoginClick = () => {
     setActiveModal("log-in");
+  };
+  const handleEditClick = () => {
+    setActiveModal("edit-profile");
   };
 
   //                                Login & Signup
@@ -94,6 +98,23 @@ function App() {
       })
       .catch(console.error);
   }, [isLoggedIn]);
+  //                                    Edit Profile: Need to work on
+  const handleEditProfile = (name, avatar) => {
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    api
+      .updateUserInfo(jwt, name, avatar)
+      .then((res) => {
+        setCurrentUser(res.data);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   //                                  Clothing Items
   const handleAddItem = (values) => {
     return addItem(values)
@@ -177,8 +198,10 @@ function App() {
                     <Profile
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
+                      handleEditClick={handleEditClick}
                       clothingItems={clothingItems}
                       isLoggedIn={isLoggedIn}
+                      setIsLoggedIn={setIsLoggedIn}
                       name={currentUser.name}
                       avatar={currentUser.avatar}
                     />
@@ -210,6 +233,11 @@ function App() {
             closeActiveModal={closeActiveModal}
             handleLogin={handleLogin}
           />
+          <EditPofileModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleEditProfile={handleEditProfile}
+          />
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
@@ -220,4 +248,4 @@ export default App;
 
 // to do later: validate form, confirmation modal
 // to do: add Item function properly (err: authorization is required)
-// appearance as logged in
+// edit profile change function

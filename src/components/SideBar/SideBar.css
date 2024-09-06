@@ -1,9 +1,12 @@
 .sideBar {
-  display: flex;
   width: 229px;
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
+}
+
+.sideBar__info {
+  display: flex;
 }
 
 .sideBar__avatar {
@@ -13,4 +16,23 @@
 }
 
 .sideBar__username {
+  margin-bottom: 39px;
+}
+
+.sideBar__edit {
+  border-style: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sideBar__logout {
+  border-style: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 8px 0;
+  cursor: pointer;
 }
