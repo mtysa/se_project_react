@@ -1,5 +1,4 @@
 const baseUrl = "http://localhost:3001";
-const headers = { "Content-Type": "application/json" };
 
 function checkRes(res) {
   if (res.ok) {
@@ -32,13 +31,11 @@ const updateUserInfo = (name, avatar, token) => {
   }).then(checkRes);
 };
 
-function getItems(token) {
+function getItems() {
   return fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   }).then(checkRes);
 }

@@ -1,6 +1,13 @@
+import { useContext } from "react";
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function ItemModal({ activeModal, onClose, card, handleDeleteItem }) {
+function ItemModal({ activeModal, closeActiveModal, card, handleDeleteItem }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser._id;
+  const modalDeleteButtonClassName = `modal__delete-btn ${
+    isOwn ? "modal__delete-btn_visible" : "modal__delete-btn_hidden"
+  }`;
   const handleDeleteClick = () => {
     handleDeleteItem(card._id);
   };
@@ -9,7 +16,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteItem }) {
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button
-          onClick={onClose}
+          onClick={closeActiveModal}
           type="button"
           className="modal__close"
         ></button>
@@ -22,7 +29,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteItem }) {
           <button
             onClick={handleDeleteClick}
             type="button"
-            className="modal__delete-btn"
+            className={modalDeleteButtonClassName}
           >
             Delete item
           </button>
@@ -33,3 +40,5 @@ function ItemModal({ activeModal, onClose, card, handleDeleteItem }) {
 }
 
 export default ItemModal;
+
+// fix delete button.. not disappearing once modal opens.. unless page refresh

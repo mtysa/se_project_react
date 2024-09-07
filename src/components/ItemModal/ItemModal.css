@@ -11,9 +11,6 @@
   padding: 0;
 }
 
-.modal__container {
-}
-
 .modal__footer {
   display: flex;
   justify-content: space-between;
@@ -39,4 +36,12 @@
   border-style: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.modal__delete-btn_visible {
+  visibility: visible;
+}
+
+.modal__delete-btn_hidden {
+  visibility: hidden;
 }

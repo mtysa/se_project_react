@@ -22,6 +22,7 @@ function Profile({
           handleCardClick={handleCardClick}
           handleAddClick={handleAddClick}
           clothingItems={clothingItems}
+          setIsLoggedIn={setIsLoggedIn}
         />
       </section>
     </div>

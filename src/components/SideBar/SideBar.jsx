@@ -34,5 +34,3 @@ function SideBar({ handleEditClick, setIsLoggedIn }) {
 }
 
 export default SideBar;
-
-// edit profile function.. link to server.. reference aroundtheus proj

@@ -100,5 +100,3 @@ const RegisterModal = ({
 };
 
 export default RegisterModal;
-
-//Todo add or sign in btn and enable text input

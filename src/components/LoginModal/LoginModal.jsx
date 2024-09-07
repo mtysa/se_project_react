@@ -58,5 +58,3 @@ const LoginModal = ({ closeActiveModal, activeModal, handleLogin }) => {
 };
 
 export default LoginModal;
-
-//todo add or sign up btn

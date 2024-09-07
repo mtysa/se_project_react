@@ -42,6 +42,8 @@ function App() {
     name: "",
   });
   const navigate = useNavigate();
+
+  // Modal Functions
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -58,6 +60,33 @@ function App() {
   const handleEditClick = () => {
     setActiveModal("edit-profile");
   };
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
+  useEffect(() => {
+    if (!activeModal) return;
+    function handleClickOffModal(event) {
+      if (event.target.classList.contains("modal")) {
+        closeActiveModal();
+      }
+    }
+
+    document.addEventListener("click", handleClickOffModal);
+    return () => document.removeEventListener("click", handleClickOffModal);
+  }, [activeModal]);
 
   //                                Login & Signup
   const handleLogin = (email, password) => {
@@ -120,7 +149,7 @@ function App() {
     const jwt = getToken();
     return addItem(name, imageUrl, weather, jwt)
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        setClothingItems([item.data, ...clothingItems]);
         closeActiveModal();
       })
       .catch((error) => {
@@ -142,9 +171,7 @@ function App() {
         console.error(error);
       });
   };
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
+
   useEffect(() => {
     getItems()
       .then(({ data }) => {
@@ -223,7 +250,7 @@ function App() {
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}
-            onClose={closeActiveModal}
+            closeActiveModal={closeActiveModal}
             handleDeleteItem={handleDeleteItem}
           />
           <RegisterModal
@@ -250,6 +277,6 @@ function App() {
 export default App;
 
 // to do later: validate form, confirmation modal
-// to do: render item after add.. it'll only show after refresh.
+// to do: fix delete button in itemmodal
 // like and unlike
 // close modal with esc and click outside modal
