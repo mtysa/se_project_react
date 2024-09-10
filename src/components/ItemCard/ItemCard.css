@@ -1,15 +1,27 @@
 .card {
-  width: 323px;
+  width: 325px;
+  height: 328px;
   position: relative;
   display: flex;
   justify-content: center;
   cursor: pointer;
 }
 
-.card__name {
+.card__image {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+}
+
+.card__content-container {
   position: absolute;
+  display: flex;
   top: 15px;
-  margin: 0;
+  align-items: center;
+}
+
+.card__name {
+  margin: 0 10px 0 0;
   padding: 2px 12px;
   font-family: "Cabinet Grotesk", arial, sans-serif;
   font-weight: 700;
@@ -20,8 +32,16 @@
   background-color: #fff;
 }
 
-.card__image {
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
+.card__like-btn {
+  padding: 0;
+  width: 18px;
+  height: 15px;
+  border-style: none;
+  margin: 0;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+.card__like-btn:hover {
+  opacity: 50%;
 }

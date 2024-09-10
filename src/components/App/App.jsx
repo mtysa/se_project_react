@@ -16,7 +16,7 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
-import { setToken, getToken } from "../../utils/token";
+import { setToken, getToken, removeToken } from "../../utils/token";
 // Modals
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -88,7 +88,7 @@ function App() {
     return () => document.removeEventListener("click", handleClickOffModal);
   }, [activeModal]);
 
-  //                                Login & Signup
+  //                                Login/Logout/Sign up
   const handleLogin = (email, password) => {
     auth
       .authorize(email, password)
@@ -127,6 +127,14 @@ function App() {
       })
       .catch(console.error);
   }, [isLoggedIn]);
+
+  const handleLogOut = () => {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+  };
+
   //                                    Edit Profile: Need to work on
   const handleEditProfile = (name, avatar) => {
     const jwt = getToken();
@@ -176,10 +184,66 @@ function App() {
     getItems()
       .then(({ data }) => {
         setClothingItems(data);
-        console.log(data);
       })
       .catch(console.error);
   }, []);
+
+  // Like function
+  const handleCardLike = ({ _id, isLiked }) => {
+    const id = _id;
+    const jwt = getToken();
+    !isLiked
+      ? api
+          .addCardLike(id, jwt)
+          .then((updatedCard) => {
+            const updatedClothingItems = clothingItems.filter((item) =>
+              item._id === id ? updatedCard : item
+            );
+            setClothingItems(updatedClothingItems);
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      : api
+          .removeCardLike(id, jwt)
+          .then((updatedCard) => {
+            const updatedClothingItems = clothingItems.filter((item) =>
+              item._id === id ? updatedCard : item
+            );
+            setClothingItems(updatedClothingItems);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+  };
+
+  // const handleCardLike = ({ _id, isLiked }) => {
+  //   const id = _id;
+  //   const jwt = getToken();
+  //   !isLiked
+  //     ? api
+  //         .addCardLike(id, jwt)
+  //         .then((updatedCard) => {
+  //           setClothingItems((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //           console.log(updatedCard);
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //         })
+  //     : api
+  //         .removeCardLike(id, jwt)
+  //         .then((updatedCard) => {
+  //           setClothingItems((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //         });
+  // };
+
   //                                    Weather
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -218,6 +282,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     isLoggedIn={isLoggedIn}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -229,11 +294,13 @@ function App() {
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       handleEditClick={handleEditClick}
+                      handleLogOut={handleLogOut}
                       clothingItems={clothingItems}
                       isLoggedIn={isLoggedIn}
                       setIsLoggedIn={setIsLoggedIn}
                       name={currentUser.name}
                       avatar={currentUser.avatar}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
@@ -277,6 +344,7 @@ function App() {
 export default App;
 
 // to do later: validate form, confirmation modal
-// to do: fix delete button in itemmodal
-// like and unlike
-// close modal with esc and click outside modal
+
+// TODO like and unlike
+// update clothessection component to show only cards added by current user
+// make like button function

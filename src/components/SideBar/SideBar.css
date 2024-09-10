@@ -13,6 +13,9 @@
   width: 56px;
   height: 56px;
   margin-right: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .sideBar__username {

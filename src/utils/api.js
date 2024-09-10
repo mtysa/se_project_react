@@ -63,4 +63,35 @@ function deleteItem(id, token) {
   }).then(checkRes);
 }
 
-export { checkRes, getUserInfo, updateUserInfo, getItems, addItem, deleteItem };
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+}
+
+export {
+  checkRes,
+  getUserInfo,
+  updateUserInfo,
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+};
