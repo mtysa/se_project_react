@@ -319,7 +319,3 @@ function App() {
 export default App;
 
 // to do later: validate form, confirmation modal
-
-// TODO like and unlike
-// update clothessection component to show only cards added by current user
-// make like button function

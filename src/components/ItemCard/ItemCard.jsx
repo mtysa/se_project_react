@@ -40,5 +40,3 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 }
 
 export default ItemCard;
-
-//fix like button
