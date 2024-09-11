@@ -153,6 +153,14 @@ function App() {
   };
 
   //                                  Clothing Items
+  useEffect(() => {
+    getItems()
+      .then(({ data }) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
   const handleAddItem = (name, imageUrl, weather) => {
     const jwt = getToken();
     return addItem(name, imageUrl, weather, jwt)
@@ -180,14 +188,6 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    getItems()
-      .then(({ data }) => {
-        setClothingItems(data);
-      })
-      .catch(console.error);
-  }, []);
-
   // Like function
   const handleCardLike = ({ _id, isLiked }) => {
     const id = _id;
@@ -196,8 +196,8 @@ function App() {
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedClothingItems = clothingItems.filter((item) =>
-              item._id === id ? updatedCard : item
+            const updatedClothingItems = clothingItems.map((item) =>
+              item._id === id ? updatedCard.data : item
             );
             setClothingItems(updatedClothingItems);
           })
@@ -207,8 +207,8 @@ function App() {
       : api
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedClothingItems = clothingItems.filter((item) =>
-              item._id === id ? updatedCard : item
+            const updatedClothingItems = clothingItems.map((item) =>
+              item._id === id ? updatedCard.data : item
             );
             setClothingItems(updatedClothingItems);
           })
@@ -216,33 +216,6 @@ function App() {
             console.error(error);
           });
   };
-
-  // const handleCardLike = ({ _id, isLiked }) => {
-  //   const id = _id;
-  //   const jwt = getToken();
-  //   !isLiked
-  //     ? api
-  //         .addCardLike(id, jwt)
-  //         .then((updatedCard) => {
-  //           setClothingItems((cards) =>
-  //             cards.map((item) => (item._id === id ? updatedCard : item))
-  //           );
-  //           console.log(updatedCard);
-  //         })
-  //         .catch((error) => {
-  //           console.error(error);
-  //         })
-  //     : api
-  //         .removeCardLike(id, jwt)
-  //         .then((updatedCard) => {
-  //           setClothingItems((cards) =>
-  //             cards.map((item) => (item._id === id ? updatedCard : item))
-  //           );
-  //         })
-  //         .catch((error) => {
-  //           console.error(error);
-  //         });
-  // };
 
   //                                    Weather
   const handleToggleSwitchChange = () => {
