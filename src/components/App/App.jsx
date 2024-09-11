@@ -297,11 +297,13 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleRegistration={handleRegistration}
+            handleLoginClick={handleLoginClick}
           />
           <LoginModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleLogin={handleLogin}
+            handleRegisterClick={handleRegisterClick}
           />
           <EditPofileModal
             activeModal={activeModal}

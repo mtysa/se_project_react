@@ -5,6 +5,7 @@ const RegisterModal = ({
   closeActiveModal,
   activeModal,
   handleRegistration,
+  handleLoginClick,
 }) => {
   //email
   const [email, setEmail] = useState("");
@@ -43,6 +44,9 @@ const RegisterModal = ({
       isOpen={activeModal === "sign-up"}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      showLink={true}
+      linkText="or Log In"
+      onLinkClick={handleLoginClick}
     >
       <label htmlFor="email" className="modal__label">
         Email*{" "}

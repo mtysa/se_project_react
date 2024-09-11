@@ -114,17 +114,12 @@
   cursor: default;
 }
 
-.modal__orLogin_btn {
-  border-style: none;
-  background-color: transparent;
-  display: flex;
-  padding: 0;
-  width: fit-content;
-
- 
+.modal__link {
+  padding-left: 12px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.modal__orLogin_btn:hover {
-  cursor: pointer;
-  
+.modal__link:hover {
+  color: #000;
 }

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ closeActiveModal, activeModal, handleLogin }) => {
+const LoginModal = ({
+  closeActiveModal,
+  activeModal,
+  handleLogin,
+  handleRegisterClick,
+}) => {
   //email
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -17,7 +22,6 @@ const LoginModal = ({ closeActiveModal, activeModal, handleLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(email, password);
-    console.log("log in clicked");
   };
 
   return (
@@ -27,6 +31,9 @@ const LoginModal = ({ closeActiveModal, activeModal, handleLogin }) => {
       isOpen={activeModal === "log-in"}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      linkText="or Sign Up"
+      onLinkClick={handleRegisterClick}
+      showLink={true}
     >
       <label htmlFor="email" className="modal__label">
         Email*{" "}
