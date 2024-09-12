@@ -65,27 +65,24 @@ function App() {
   };
   useEffect(() => {
     if (!activeModal) return;
-    const handleEscClose = (e) => {
-      if (e.key === "Escape") {
-        closeActiveModal();
-      }
-    };
-    document.addEventListener("keydown", handleEscClose);
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, [activeModal]);
-
-  useEffect(() => {
-    if (!activeModal) return;
     function handleClickOffModal(event) {
       if (event.target.classList.contains("modal")) {
         closeActiveModal();
       }
     }
 
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
     document.addEventListener("click", handleClickOffModal);
-    return () => document.removeEventListener("click", handleClickOffModal);
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("click", handleClickOffModal);
+      document.removeEventListener("keydown", handleEscClose);
+    };
   }, [activeModal]);
 
   //                                Login/Logout/Sign up
@@ -135,7 +132,7 @@ function App() {
     setCurrentUser({});
   };
 
-  //                                    Edit Profile: Need to work on
+  //                                    Edit Profile
   const handleEditProfile = (name, avatar) => {
     const jwt = getToken();
     if (!jwt) {

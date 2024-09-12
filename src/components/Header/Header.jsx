@@ -42,11 +42,17 @@ function Header({
             <Link to="/profile" className="header__link">
               <div className="header__user-container">
                 <p className="header__username">{currentUser?.name}</p>
-                <img
-                  src={currentUser?.avatar}
-                  alt="testing"
-                  className="header__avatar"
-                />
+                {currentUser?.avatar ? (
+                  <img
+                    src={currentUser?.avatar}
+                    alt="testing"
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div className="header__avatar-placeholder">
+                    {currentUser?.name?.charAt(0).toUpperCase() || ""}
+                  </div>
+                )}
               </div>
             </Link>
           </>

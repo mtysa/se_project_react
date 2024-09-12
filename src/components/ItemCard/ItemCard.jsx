@@ -20,7 +20,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     <li className="card">
       <div className="card__content-container">
         <h2 className="card__name">{item.name}</h2>
-        {currentUser && (
+        {currentUser?._id && (
           <img
             src={isLiked ? likeActive : likeInactive}
             alt="card like"
