@@ -33,12 +33,12 @@ const AddItemModal = ({ closeActiveModal, handleAddItem, activeModal }) => {
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="itemName" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="itemName"
           placeholder="Name"
           minLength="1"
           maxLength="30"
@@ -47,12 +47,12 @@ const AddItemModal = ({ closeActiveModal, handleAddItem, activeModal }) => {
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="itemImageUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
           className="modal__input"
-          id="imageUrl"
+          id="itemImageUrl"
           placeholder="Image URL"
           required
           value={imageUrl}

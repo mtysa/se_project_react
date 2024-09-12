@@ -27,6 +27,7 @@ const EditPofileModal = ({
     console.log("Changes saved.");
   };
 
+  // effect to have profile info appear in edit profile
   useEffect(() => {
     if (activeModal === "edit-profile" && currentUser) {
       setName(currentUser.name || "");
@@ -42,12 +43,12 @@ const EditPofileModal = ({
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="editName" className="modal__label">
         Name*{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="editName"
           placeholder="Name"
           minLength="2"
           maxLength="30"
@@ -56,12 +57,12 @@ const EditPofileModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="editAvatar" className="modal__label">
         Avatar*{" "}
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="editAvatar"
           placeholder="Avatar URL"
           required
           value={avatar}

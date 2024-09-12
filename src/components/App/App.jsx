@@ -76,7 +76,6 @@ function App() {
         closeActiveModal();
       }
     };
-
     document.addEventListener("click", handleClickOffModal);
     document.addEventListener("keydown", handleEscClose);
     return () => {

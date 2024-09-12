@@ -35,24 +35,24 @@ const LoginModal = ({
       onLinkClick={handleRegisterClick}
       showLink={true}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="loginEmail" className="modal__label">
         Email*{" "}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="loginEmail"
           placeholder="Email"
           required
           value={email}
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="loginPassword" className="modal__label">
         Password*{" "}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="loginPassword"
           placeholder="Password"
           minLength="6"
           required
