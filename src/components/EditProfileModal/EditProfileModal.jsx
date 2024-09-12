@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -27,6 +27,13 @@ const EditPofileModal = ({
     console.log("Changes saved.");
   };
 
+  useEffect(() => {
+    if (activeModal === "edit-profile" && currentUser) {
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
+    }
+  }, [activeModal, currentUser]);
+
   return (
     <ModalWithForm
       title="Change profile data"
@@ -35,12 +42,12 @@ const EditPofileModal = ({
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="editName" className="modal__label">
+      <label htmlFor="name" className="modal__label">
         Name*{" "}
         <input
           type="text"
           className="modal__input"
-          id="editName"
+          id="name"
           placeholder="Name"
           minLength="2"
           maxLength="30"
@@ -49,12 +56,12 @@ const EditPofileModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="editAvatar" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar*{" "}
         <input
           type="url"
           className="modal__input"
-          id="editAvatar"
+          id="avatar"
           placeholder="Avatar URL"
           required
           value={avatar}

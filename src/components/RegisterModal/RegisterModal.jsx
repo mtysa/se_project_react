@@ -48,24 +48,24 @@ const RegisterModal = ({
       linkText="or Log In"
       onLinkClick={handleLoginClick}
     >
-      <label htmlFor="signUpEmail" className="modal__label">
+      <label htmlFor="email" className="modal__label">
         Email*{" "}
         <input
           type="email"
           className="modal__input"
-          id="signUpEmail"
+          id="email"
           placeholder="Email"
           required
           value={email}
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="signUpPassword" className="modal__label">
+      <label htmlFor="password" className="modal__label">
         Password*{" "}
         <input
           type="password"
           className="modal__input"
-          id="signUpPassword"
+          id="password"
           placeholder="Password"
           minLength="6"
           required
@@ -73,12 +73,12 @@ const RegisterModal = ({
           onChange={handlePasswordChange}
         />
       </label>
-      <label htmlFor="signUpName" className="modal__label">
+      <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="signUpName"
+          id="name"
           placeholder="Name"
           minLength="2"
           maxLength="30"
@@ -87,12 +87,12 @@ const RegisterModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="signUpAvatar" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar URL{" "}
         <input
           type="url"
           className="modal__input"
-          id="signUpAvatar"
+          id="avatar"
           placeholder="Avatar URL"
           required
           value={avatar}
